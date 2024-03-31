@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   gender: { type: String, required: true, emum: ["male", "female"] },
   profilePic: { type: String, default: "" },
-});
+},{timestamps: true});// Add createdAt and updatedAt fields
 
 const User = mongoose.model("User", userSchema);
 
