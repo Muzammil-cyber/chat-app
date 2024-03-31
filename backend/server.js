@@ -1,9 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+
 import authRouter from "./routes/auth.route.js";
-import connectToDB from "./db/connectToMongoDB.js";
 import messageRouter from "./routes/message.route.js";
+import userRouter from "./routes/user.route.js";
+
+import connectToDB from "./db/connectToMongoDB.js";
 
 dotenv.config();
 const app = express();
@@ -15,6 +18,7 @@ app.use(cookieParser()); // Middleware for parsing cookies
 
 app.use("/api/auth", authRouter);
 app.use("/api/messages", messageRouter);
+app.use("/api/user", userRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is ready");
