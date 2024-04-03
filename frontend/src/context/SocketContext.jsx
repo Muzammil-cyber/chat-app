@@ -16,7 +16,7 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      const socket = io("http://localhost:5000", {
+      const socket = io("https://chat-app-snowy-ten.vercel.app", {
         query: {
           userId: user._id,
         },
