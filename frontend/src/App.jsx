@@ -12,8 +12,14 @@ function App() {
   return (
     <div className="p-4 h-screen flex items-center justify-center">
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Navigate to={"login"} />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={user ? <Home /> : <Navigate to={"/login"} />}
+        />
+        <Route
+          path="/login"
+          element={user ? <Navigate to={"/"} /> : <Login />}
+        />
         <Route
           path="/register"
           element={user ? <Navigate to="/" /> : <Register />}
