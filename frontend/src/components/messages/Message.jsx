@@ -5,9 +5,10 @@ import { extractTime } from "../../utils/time";
 const Message = ({ message }) => {
   const { user } = useAuthContext();
   const { selectedConversation } = useConversation();
-  const fromMe = message.senderId === user._id;
+
+  const fromMe = message.senderId === user.id;
   const profilePic =
-    message.senderId === user._id
+    message.senderId === user.id
       ? user.profilePic
       : selectedConversation.profilePic;
 
