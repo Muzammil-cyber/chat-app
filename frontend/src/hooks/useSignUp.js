@@ -1,8 +1,10 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useAuthContext } from "../context/AuthContext";
 
 const useSignUp = () => {
   const [loading, setLoading] = useState(false);
+  const { setUser } = useAuthContext();
 
   const signUp = async (input) => {
     const error = validateInput(input);
@@ -11,18 +13,20 @@ const useSignUp = () => {
     setLoading(true);
     try {
       // Make API request to sign up user
-      const res = await fetch("http://localhost:5000/api/auth/register", {
+      const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(input),
       });
 
       const data = await res.json();
+
       if (data.error) {
         throw new Error(data.error);
       }
+      localStorage.setItem("user", JSON.stringify(data));
+      setUser(data);
     } catch (error) {
-      console.log(error);
       toast.error("An error occurred. Please try again.");
     } finally {
       setLoading(false);
@@ -33,13 +37,13 @@ const useSignUp = () => {
 };
 
 function validateInput({
-  fullName,
+  fullname,
   username,
   password,
   confirmPassword,
   gender,
 }) {
-  if (!fullName || !username || !password || !confirmPassword || !gender) {
+  if (!fullname || !username || !password || !confirmPassword || !gender) {
     toast.error("Please fill in all fields");
     return false;
   }

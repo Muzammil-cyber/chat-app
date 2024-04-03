@@ -5,7 +5,7 @@ import useSignUp from "../../hooks/useSignUp";
 
 const Register = () => {
   const [input, setInput] = useState({
-    fullName: null,
+    fullname: null,
     username: null,
     password: null,
     confirmPassword: "",
@@ -38,8 +38,8 @@ const Register = () => {
               type="text"
               placeholder="John Doe"
               className="w-full input input-bordered  h-10"
-              value={input.fullName}
-              onChange={(e) => setInput({ ...input, fullName: e.target.value })}
+              value={input.fullname}
+              onChange={(e) => setInput({ ...input, fullname: e.target.value })}
             />
           </div>
 
